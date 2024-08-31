@@ -1,0 +1,213 @@
+"0","#install packages"
+"0","install.packages('ggplot2')"
+"1","The following package(s) will be installed:
+"
+"1","- ggplot2 [3.5.1]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing ggplot2 ...                        "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 23 milliseconds.
+"
+"0","install.packages('dplyr')"
+"1","The following package(s) will be installed:
+"
+"1","- dplyr [1.1.4]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing dplyr ...                          "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 20 milliseconds.
+"
+"0","install.packages('tidyr')"
+"1","The following package(s) will be installed:
+"
+"1","- tidyr [1.3.1]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing tidyr ...                          "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 22 milliseconds.
+"
+"0","install.packages('gridExtra')"
+"1","The following package(s) will be installed:
+"
+"1","- gridExtra [2.3]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing gridExtra ...                      "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 13 milliseconds.
+"
+"0","install.packages('ggExtra')"
+"1","The following package(s) will be installed:
+"
+"1","- ggExtra [0.10.1]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing ggExtra ...                        "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 18 milliseconds.
+"
+"0","install.packages('ggridges')"
+"1","The following package(s) will be installed:
+"
+"1","- ggridges [0.5.6]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing ggridges ...                       "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 15 milliseconds.
+"
+"0","install.packages('corrplot')"
+"1","The following package(s) will be installed:
+"
+"1","- corrplot [0.94]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing corrplot ...                       "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 1 package in 26 milliseconds.
+"
+"0","install.packages('rsample')"
+"1","The following package(s) will be installed:
+"
+"1","- furrr      [0.3.1]
+"
+"1","- future     [1.34.0]
+"
+"1","- globals    [0.16.3]
+"
+"1","- listenv    [0.9.1]
+"
+"1","- parallelly [1.38.0]
+"
+"1","- rsample    [1.2.1]
+"
+"1","- slider     [0.3.1]
+"
+"1","- warp       [0.2.1]
+"
+"1","These packages will be installed into ""C:/Users/songt/R projects/Medical Cost Prediction/renv/library/R-4.3/x86_64-w64-mingw32"".
+"
+"1","
+"
+"0","y"
+"1","
+"
+"1","# Installing packages ----------------------
+"
+"1","- Installing globals ...                        "
+"1","OK [linked from cache]
+"
+"1","- Installing listenv ...                        "
+"1","OK [linked from cache]
+"
+"1","- Installing parallelly ...                     "
+"1","OK [linked from cache]
+"
+"1","- Installing future ...                         "
+"1","OK [linked from cache]
+"
+"1","- Installing furrr ...                          "
+"1","OK [linked from cache]
+"
+"1","- Installing warp ...                           "
+"1","OK [linked from cache]
+"
+"1","- Installing slider ...                         "
+"1","OK [linked from cache]
+"
+"1","- Installing rsample ...                        "
+"1","OK [linked from cache]
+"
+"1","Successfully installed 8 packages in 0.12 seconds.
+"
+"0","library(tidyr)"
+"0","library(dplyr)"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal,
+    union
+
+"
+"0","library(ggplot2)"
+"0","library(ggExtra)"
+"0","library(ggridges)"
+"0","library(corrplot)"
+"2","corrplot 0.94 loaded
+"
+"0","library(rsample)"
+"0",""
