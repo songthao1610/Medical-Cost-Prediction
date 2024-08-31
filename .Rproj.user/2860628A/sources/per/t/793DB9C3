@@ -1,7 +1,7 @@
 {
     "id": "793DB9C3",
-    "path": null,
-    "project_path": null,
+    "path": "C:/Users/songt/R projects/Medical Cost Prediction/notebook.Rmd",
+    "project_path": "notebook.Rmd",
     "type": "r_markdown",
     "hash": "2494413507",
     "contents": "",
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "33,0",
-        "scrollLine": "19"
+        "cursorPosition": "32,10",
+        "scrollLine": "25"
     },
     "folds": "",
-    "lastKnownWriteTime": 0,
-    "encoding": "",
+    "lastKnownWriteTime": 1725131536,
+    "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1725128844571,
+    "last_content_update": 1725131536433,
     "read_only": false,
     "read_only_alternatives": []
 }

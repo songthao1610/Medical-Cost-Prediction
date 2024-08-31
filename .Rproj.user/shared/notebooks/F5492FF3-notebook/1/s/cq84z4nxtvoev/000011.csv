@@ -1,0 +1,4 @@
+"0","df = read.csv('insurance.csv', header = TRUE)"
+"0","df.head(5)"
+"2","Error in df.head(5) : could not find function ""df.head""
+"

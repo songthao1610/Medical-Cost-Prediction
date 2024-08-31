@@ -1,0 +1,236 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#install packages
+install.packages('ggplot2')
+install.packages('dplyr')
+install.packages('tidyr')
+install.packages('gridExtra')
+install.packages('ggExtra')
+install.packages('ggridges')
+install.packages('corrplot')
+install.packages('rsample')
+
+
+library(tidyr)
+library(gridExtra)
+library(dplyr)
+library(ggplot2)
+library(ggExtra)
+library(ggridges)
+library(corrplot)
+library(rsample)
+
+```
+```{r}
+df = read.csv('insurance.csv', header = TRUE)
+head(df)
+```
+```{r}
+summary(df)
+
+```
+```{r}
+str(df)
+
+```
+```{r}
+p <- ggplot(df, aes(x = bmi, y = charges),c) +
+geom_point() +
+theme(legend.position = 'none') +
+ggtitle("Scatter Plot of Charges by BMI") +
+theme(plot.title = element_text(size = 14, face = "bold",  hjust=0.5, vjust=0.5))
+p2 <- ggMarginal(p, type = "histogram", fill = 'lightblue',  xparams = list(bins = 10))
+p2
+p <- ggplot(df, aes(x = age, y = charges),c) +
+geom_point() +
+theme(legend.position = 'none') +
+ggtitle("Scatter Plot of Charges by Age") +
+theme(plot.title = element_text(size = 14, face = "bold",  hjust=0.5, vjust=0.5))
+p
+```
+```{r}
+df$age_group <- cut(df$age,
+breaks = c(0, 18, 35, 50, 60, 100),
+labels = c('0-18', '19-35', '36-50', '50-60', '60-100'),
+right = FALSE)
+g1 <- ggplot(df,
+aes(x = factor(age_group),
+y = charges,
+fill = (age_group))) +
+geom_boxplot() +
+theme(legend.position = 'none')+
+ggtitle("Charges by Age ") +
+theme(plot.title=element_text(family='', face='plain', colour='black', size=14, hjust=0.5, vjust=0.5)) +
+xlab('Age') +
+ylab('Charges')
+g2 <- ggplot(df,
+aes(x=age_group,
+fill = factor(age_group))) +
+geom_bar() +
+theme(legend.position = 'none')+
+ggtitle("Countplot for age group ") +
+theme(plot.title=element_text(family='', colour='black', size=14, hjust=0.5, vjust=0.5)) +
+xlab('Age') +
+ylab('Count')
+grid.arrange(g1, g2, ncol=2)
+```
+
+```{r}
+g1 <- ggplot(df, aes(x = charges)) + geom_histogram(fill = 'slateblue') + theme(legend.position = 'none')+ ggtitle("Distribution of Charges") + theme(plot.title=element_text(family='', colour='black', size=14, hjust=0.5, vjust=0.5)) + xlab('Charges') + ylab('')
+g2 <- ggplot(df,
+aes(x = factor(children),
+y = charges,
+fill = (children))) +
+geom_boxplot() +
+theme(legend.position = 'none')+
+ggtitle("Charges by No. Children ") +
+theme(plot.title=element_text(family='', face='bold', colour='black', size=16, hjust=0.5, vjust=0.5)) +
+xlab('Children') +
+ylab('Charges')
+g3 <- ggplot(df,
+aes(x=children,
+fill = factor(children))) +
+geom_bar() +
+theme(legend.position = 'none')+
+ggtitle("Countplot by No. Children ") +
+theme(plot.title=element_text(family='', colour='black', size=12, hjust=0.5, vjust=0.5)) +
+xlab('Children') +
+ylab('Count')
+grid.arrange(g2, arrangeGrob(g1, g3, ncol=2), nrow = 2)
+```
+```{r}
+g1 <- ggplot(data = df, aes(x = charges, fill = sex)) +
+geom_density(alpha = 0.5) +
+scale_fill_manual(values = c('salmon', 'lightblue')) +
+ggtitle("Density Plot of Charges\n by Sex") +
+theme(plot.title=element_text(family='', colour='black', size=12, hjust=0.5, vjust=0.5))+xlab('Charges') +ylab('Density')
+# Boxplot of charges by sex
+g2 <- ggplot(data = df, aes(x = factor(sex), y = charges, fill = sex)) +
+geom_boxplot() +
+scale_fill_manual(values = c('salmon', 'lightblue')) +
+ggtitle("Boxplot of Charges \nby Sex") +
+theme(plot.title=element_text(family='', colour='black', size=12, hjust=0.5, vjust=0.5))+
+xlab('Sex') +
+ylab('Charges')  +
+theme(legend.position = 'none')
+grid.arrange(g2, g1, ncol = 2, widths = c(0.5, 1))
+
+```
+```{r}
+g1 <- ggplot(data = df, aes(x = charges, fill = smoker)) +
+geom_density(alpha = 0.5) +
+scale_fill_manual(values = c('cornsilk1', 'brown')) +
+ggtitle("Density Plot of Charges by \nwhether a person is a smoker") +
+theme(plot.title=element_text(family='', colour='black', size=12, hjust=0.5, vjust=0.5))+
+xlab('Charges') +
+ylab('Density')
+# Boxplot of charges by sex
+g2 <- ggplot(data = df, aes(x = factor(smoker), y = charges, fill = smoker)) +
+geom_boxplot() +
+scale_fill_manual(values = c('cornsilk1', 'brown')) +
+ggtitle("Boxplot of Charges by \nwhether a person is a smoker") +
+theme(plot.title=element_text(family='', colour='black', size=12, hjust=0.5, vjust=0.5))+
+xlab('Sex') +
+ylab('Charges')  +
+theme(legend.position = 'none')
+# Arrange the plots in a grid
+grid.arrange(g2, g1, ncol = 2, widths = c(0.6, 1))
+
+```
+```{r}
+ggplot(df, aes(x=charges, y = region, fill = region)) +
+geom_density_ridges() +
+theme_ridges() +
+theme(legend.position = 'none')+
+ggtitle('Distributions of Charges by Regions')+
+theme(plot.title = element_text(size =16, face='plain'))+
+xlab('')+
+ylab('')
+
+```
+```{r}
+ggplot(df, aes(x = charges, fill = sex)) +
+geom_density(alpha = 0.5) +
+facet_wrap(~age_group) +  # Create age groups if needed
+scale_fill_manual(values = c('salmon', 'lightblue')) +
+ggtitle("Density of Charges by Gender and Age Group") +
+xlab('Charges') +
+ylab('Density') +
+theme_minimal() +
+theme(plot.title = element_text(face = "plain"))
+```
+```{r}
+charges_by_smoker_gender <- df%>% group_by(smoker, sex) %>%
+summarize(mean_charges = mean(charges), .groups = 'drop')
+print(charges_by_smoker_gender)
+ggplot(df, aes(x = smoker, y = charges, fill = sex)) +
+geom_boxplot() +
+scale_fill_manual(values = c('salmon', 'lightblue')) +
+ggtitle("Charges by Smoker Status and Sex") +
+theme(plot.title = element_text(size = 16, hjust= 0.5))+
+xlab('Smoker Status') +
+ylab('Charges')
+
+```
+```{r}
+ggplot(df, aes(x = bmi, y = charges, color = age_group)) +
+geom_point(size = 3) +
+facet_wrap(~age_group) +
+scale_color_manual(values = c('blue', 'green', 'yellow', 'orange')) +
+ggtitle("Charges by BMI and Age Group") +
+xlab("BMI") +
+ylab("Charges") +
+theme_minimal() +
+theme(plot.title = element_text(face = "plain"))
+```
+```{r}
+df_numeric <- df[sapply(df, is.numeric)]
+corr_matrix <- cor(df_numeric, use = 'pairwise.complete.obs')
+corr_matrix
+```
+```{r}
+corrplot(corr_matrix, method = 'color', type ='upper', tl.cex = 0.8)
+```
+```{r}
+df$sex <- as.factor(df$sex)
+df$smoker <- as.factor(df$smoker)
+df$region <- as.factor(df$region)
+df$age_group <- as.factor(df$age_group)
+split <- initial_split(df, prop = 0.8)
+train_data <- training(split)
+test_data <- testing(split)
+model <- lm(charges ~ bmi + age_group + sex + region+ smoker, data = train_data)
+summary(model)
+```
+```{r}
+predictions <- predict(model, newdata = test_data)
+test_data$predicted_charges <- predictions
+head(test_data)
+mae <- mean(abs(test_data$charges - test_data$predicted_charges))
+mae
+mse <- mean((test_data$charges - test_data$predicted_charges)^2)
+mse
+mse <- mean((test_data$charges - test_data$predicted_charges)^2)
+rmse <- sqrt(mse)
+rmse
+# Plot residuals
+ggplot(test_data, aes(x = predicted_charges, y = charges - predicted_charges)) +
+geom_point() +
+geom_hline(yintercept = 0, color = "red") +
+ggtitle("Residuals vs Predicted Charges") +
+xlab("Predicted Charges") +
+ylab("Residuals")
+# Plot actual vs predicted values
+ggplot(test_data, aes(x = charges, y = predicted_charges)) +
+geom_point() +
+geom_abline(intercept = 0, slope = 1, color = "red") +
+ggtitle("Actual vs Predicted Charges") +
+xlab("Actual Charges") +
+ylab("Predicted Charges")
+
+```
+
